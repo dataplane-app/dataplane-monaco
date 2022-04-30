@@ -78,16 +78,16 @@ function App() {
   // loader.config({ paths: { vs: "file:///node_modules/monaco-editor/min/vs" } });
   loader.config({ monaco, paths: {vs: "../node_modules/monaco-editor/min/vs"} });
 
-// loader.init().then((monaco) => {
-//   const wrapper = document.getElementById("root");
-//   wrapper.style.height = "100vh";
-//   const properties = {
-//     value: "function hello() {\n\talert('Hello world!');\n}",
-//     language: "javascript"
-//   };
+loader.init().then((monaco) => {
+  const wrapper = document.getElementById("root");
+  wrapper.style.height = "100vh";
+  const properties = {
+    value: "function hello() {\n\talert('Hello world!');\n}",
+    language: "javascript"
+  };
 
-//   monaco.editor.create(wrapper, properties);
-// });
+  monaco.editor.create(wrapper, properties);
+});
 
   const monaco2 = useMonaco();
 
@@ -114,11 +114,11 @@ function App() {
   return (
     <div className="App">
       <div id="monaco"></div>
-      <Editor
+      {/* <Editor
                         height="90vh"
       defaultValue="// some comment"
       defaultLanguage="javascript"
-                    />
+                    /> */}
 
     </div>
   );
