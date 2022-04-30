@@ -1,12 +1,12 @@
 import React, {useEffect} from 'react';
 import path from 'path';
 import './App.css';
-// import * as monaco from "monaco-editor";
+import * as monaco from "monaco-editor";
 import Editor, { useMonaco } from "@monaco-editor/react";
 import loader from "@monaco-editor/loader";
 // import path from 'path';
 
-// loader.config({ monaco });
+
 
 // loader.config({
 // paths: {
@@ -67,8 +67,16 @@ function uriFromPath(_path) {
 //   )
 // }
 // });
+// ./node_modules/monaco-editor/min/vs
 
-loader.config({ paths: { vs: "./node_modules/monaco-editor/min/vs" } });
+// loader.config({ paths: { vs: "file:///node_modules/monaco-editor/min/vs" } });
+
+
+
+function App() {
+  // const path = require('path');
+  // loader.config({ paths: { vs: "file:///node_modules/monaco-editor/min/vs" } });
+  loader.config({ monaco, paths: {vs: "../node_modules/monaco-editor/min/vs"} });
 
 // loader.init().then((monaco) => {
 //   const wrapper = document.getElementById("root");
@@ -81,13 +89,14 @@ loader.config({ paths: { vs: "./node_modules/monaco-editor/min/vs" } });
 //   monaco.editor.create(wrapper, properties);
 // });
 
-function App() {
-  // const path = require('path');
   const monaco2 = useMonaco();
 
   useEffect(() => {
     if (monaco2) {
       console.log("here is the monaco instance:", monaco2);
+      console.log(uriFromPath(
+            path.join(__dirname, "../node_modules/monaco-editor/min/vs/loader.js")
+          ))
     }
   }, [monaco2]);
 
@@ -104,7 +113,7 @@ function App() {
 
   return (
     <div className="App">
-      {/* <div id="monaco"></div> */}
+      <div id="monaco"></div>
       <Editor
                         height="90vh"
       defaultValue="// some comment"
